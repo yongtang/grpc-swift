@@ -36,7 +36,7 @@ internal final class PooledChannel: GRPCChannel {
   @inlinable
   internal init(configuration: GRPCChannelPool.Configuration) throws {
     self._configuration = configuration
-    self._authority = configuration.target.host
+    self._authority = configuration.transportSecurity.tlsConfiguration?.hostnameOverride ?? configuration.target.host
 
     let tlsMode: DefaultChannelProvider.TLSMode
     let scheme: String
